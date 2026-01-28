@@ -14,6 +14,7 @@ import { Patient } from '../patient.model';
 export class PatientListComponent implements OnInit {
 
   patients: Patient[] = [];
+  selectedPatient: Patient | null = null;
 
   newPatient: Patient = {
     id: 0,
@@ -39,4 +40,24 @@ export class PatientListComponent implements OnInit {
     this.newPatient = { id: 0, name: '', age: 0, gender: '', contact: '' };
     this.loadPatients();
   }
+  deletePatient(id: number) {
+  this.patientService.deletePatient(id);
+  this.loadPatients();
+  }
+  updatePatient() {
+  const patients = this.patientService.getPatients();
+  const index = patients.findIndex(p => p.id === this.selectedPatient!.id);
+
+  patients[index] = this.selectedPatient!;
+  localStorage.setItem('patients', JSON.stringify(patients));
+
+  this.selectedPatient = null;
+  this.loadPatients();
+}
+editPatient(patient: Patient) {
+  // Create a copy (IMPORTANT)
+  this.selectedPatient = { ...patient };
+}
+
+
 }

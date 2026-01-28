@@ -27,5 +27,20 @@
     <td>{{ patient.age }}</td>
     <td>{{ patient.gender }}</td>
     <td>{{ patient.contact }}</td>
+    <td>
+        <button (click)="editPatient(patient)">Edit</button>
+        <button (click)="deletePatient(patient.id)">Delete</button>
+    </td>
   </tr>
 </table>
+<div *ngIf="selectedPatient">
+  <h3>Edit Patient</h3>
+
+  <input [(ngModel)]="selectedPatient.name" />
+  <input type="number" [(ngModel)]="selectedPatient.age" />
+  <input [(ngModel)]="selectedPatient.gender" />
+  <input [(ngModel)]="selectedPatient.contact" />
+
+  <br /><br />
+  <button (click)="updatePatient()">Update</button>
+</div>

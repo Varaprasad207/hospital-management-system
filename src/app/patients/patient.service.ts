@@ -17,4 +17,8 @@ export class PatientService {
     patients.push(patient);
     localStorage.setItem(this.storageKey, JSON.stringify(patients));
   }
+  deletePatient(id: number) {
+  const patients = this.getPatients().filter(p => p.id !== id);
+  localStorage.setItem(this.storageKey, JSON.stringify(patients));
+}
 }
