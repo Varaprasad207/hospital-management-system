@@ -1,0 +1,31 @@
+<h2>Patient Management</h2>
+
+<h3>Add Patient</h3>
+
+<input placeholder="Name" [(ngModel)]="newPatient.name" />
+<input type="number" placeholder="Age" [(ngModel)]="newPatient.age" />
+<input placeholder="Gender" [(ngModel)]="newPatient.gender" />
+<input placeholder="Contact" [(ngModel)]="newPatient.contact" />
+
+<br /><br />
+<button (click)="addPatient()">Add Patient</button>
+
+<hr />
+
+<h3>Patient List</h3>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Contact</th>
+  </tr>
+
+  <tr *ngFor="let patient of patients">
+    <td>{{ patient.name }}</td>
+    <td>{{ patient.age }}</td>
+    <td>{{ patient.gender }}</td>
+    <td>{{ patient.contact }}</td>
+  </tr>
+</table>
