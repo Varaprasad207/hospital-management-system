@@ -24,5 +24,20 @@
     <td>{{ doctor.name }}</td>
     <td>{{ doctor.specialization }}</td>
     <td>{{ doctor.contact }}</td>
+    <td>
+        <button (click)="deleteDoctor(doctor.id)">Delete</button>
+        <button (click)="editDoctor(doctor)">Edit</button>
+    </td>
   </tr>
 </table>
+<div *ngIf="selectedDoctor">
+  <h3>Edit Doctor</h3>
+
+  <input [(ngModel)]="selectedDoctor.name" />
+  <input [(ngModel)]="selectedDoctor.specialization" />
+  <input [(ngModel)]="selectedDoctor.contact" />
+
+  <br /><br />
+  <button (click)="updateDoctor()">Update</button>
+</div>
+

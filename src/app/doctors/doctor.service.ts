@@ -17,4 +17,8 @@ export class DoctorService {
     doctors.push(doctor);
     localStorage.setItem(this.storageKey, JSON.stringify(doctors));
   }
+  deleteDoctor(id: number) {
+    const doctors = this.getDoctors().filter(d => d.id !== id);
+    localStorage.setItem(this.storageKey, JSON.stringify(doctors));
+  }  
 }

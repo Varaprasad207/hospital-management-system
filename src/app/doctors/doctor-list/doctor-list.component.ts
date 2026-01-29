@@ -14,6 +14,7 @@ import { Doctor } from '../doctor.model';
 export class DoctorListComponent implements OnInit {
 
   doctors: Doctor[] = [];
+  selectedDoctor: Doctor | null = null;
 
   newDoctor: Doctor = {
     id: 0,
@@ -38,4 +39,23 @@ export class DoctorListComponent implements OnInit {
     this.newDoctor = { id: 0, name: '', specialization: '', contact: '' };
     this.loadDoctors();
   }
+  deleteDoctor(id: number) {
+    this.doctorService.deleteDoctor(id);
+    this.loadDoctors();
+  }  
+  editDoctor(doctor: Doctor) {
+    this.selectedDoctor = { ...doctor };
+  }
+  updateDoctor() {
+    const doctors = this.doctorService.getDoctors();
+    const index = doctors.findIndex(d => d.id === this.selectedDoctor!.id);
+
+    doctors[index] = this.selectedDoctor!;
+    localStorage.setItem('doctors', JSON.stringify(doctors));
+
+    this.selectedDoctor = null;
+    this.loadDoctors();
+  }  
+  
+
 }
