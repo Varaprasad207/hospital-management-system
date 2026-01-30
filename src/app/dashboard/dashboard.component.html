@@ -1,1 +1,20 @@
-<h2>Dashboard Works</h2>
+<h2>Dashboard</h2>
+
+<p><b>Role:</b> {{ userRole }}</p>
+
+<div class="cards">
+  <div class="card">
+    <h3>Total Patients</h3>
+    <p>{{ totalPatients }}</p>
+  </div>
+
+  <div class="card" *ngIf="userRole === 'ADMIN'">
+    <h3>Total Doctors</h3>
+    <p>{{ totalDoctors }}</p>
+  </div>
+
+  <div class="card">
+    <h3>Total Appointments</h3>
+    <p>{{ totalAppointments }}</p>
+  </div>
+</div>

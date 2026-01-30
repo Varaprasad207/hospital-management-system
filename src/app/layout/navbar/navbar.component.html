@@ -1,0 +1,13 @@
+<nav class="navbar" *ngIf="isLoggedIn">
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/patients">Patients</a>
+
+  <a routerLink="/doctors" *ngIf="userRole === 'ADMIN'">Doctors</a>
+
+  <a routerLink="/appointments">Appointments</a>
+
+  <span class="spacer"></span>
+
+  <button (click)="logout()">Logout</button>
+</nav>
+

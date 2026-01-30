@@ -11,11 +11,13 @@ export class AuthService {
   login(username: string, password: string): boolean {
     if (username === 'admin' && password === 'admin123') {
       localStorage.setItem('userRole', 'ADMIN');
+      localStorage.setItem('isLoggedIn', 'true');
       return true;
     }
 
     if (username === 'doctor' && password === 'doctor123') {
       localStorage.setItem('userRole', 'DOCTOR');
+      localStorage.setItem('isLoggedIn', 'true');
       return true;
     }
 
@@ -24,12 +26,13 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('userRole');
+    localStorage.removeItem('isLoggedIn');
     this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('userRole');
-  }
+  return localStorage.getItem('isLoggedIn') === 'true';
+}
 
   getUserRole(): string | null {
     return localStorage.getItem('userRole');

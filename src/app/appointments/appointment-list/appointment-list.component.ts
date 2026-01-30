@@ -28,6 +28,7 @@ export class AppointmentListComponent implements OnInit {
   selectedDoctorId!: number;
   appointmentDate = '';
   reason = '';
+  selectedAppointment: Appointment | null = null;
 
   constructor(
     private appointmentService: AppointmentService,
@@ -74,6 +75,36 @@ export class AppointmentListComponent implements OnInit {
   this.reason = '';
 
   this.loadData();
-}
+  }
+ deleteAppointment(id: number) {
+   this.appointmentService.deleteAppointment(id);
+   this.loadData();
+  }
+ editAppointment(appt: Appointment) {
+   this.selectedAppointment = { ...appt };
+ }
+ updateAppointment() {
+   const appointments = this.appointmentService.getAppointments();
+   const index = appointments.findIndex(
+    a => a.id === this.selectedAppointment!.id
+   );
+
+   appointments[index] = this.selectedAppointment!;
+   localStorage.setItem('appointments', JSON.stringify(appointments));
+
+   this.selectedAppointment = null;
+   this.loadData();
+   const patient = this.patients.find(
+    p => p.id === this.selectedAppointment!.patientId
+   );
+   const doctor = this.doctors.find(
+    d => d.id === this.selectedAppointment!.doctorId
+   );
+
+   this.selectedAppointment!.patientName = patient?.name || '';
+   this.selectedAppointment!.doctorName = doctor?.name || '';
+
+  }
+
 
 }

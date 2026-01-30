@@ -17,4 +17,8 @@ export class AppointmentService {
     appointments.push(appointment);
     localStorage.setItem(this.storageKey, JSON.stringify(appointments));
   }
+  deleteAppointment(id: number) {
+    const appointments = this.getAppointments().filter(a => a.id !== id);
+    localStorage.setItem(this.storageKey, JSON.stringify(appointments));
+  }  
 }
