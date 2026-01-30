@@ -1,1 +1,41 @@
-<h2>appointment-list works!</h2>
+<h2>Book Appointment</h2>
+
+<select [(ngModel)]="selectedPatientId">
+  <option value="">Select Patient</option>
+  <option *ngFor="let patient of patients" [value]="patient.id">
+    {{ patient.name }}
+  </option>
+</select>
+
+<select [(ngModel)]="selectedDoctorId">
+  <option value="">Select Doctor</option>
+  <option *ngFor="let doctor of doctors" [value]="doctor.id">
+    {{ doctor.name }} - {{ doctor.specialization }}
+  </option>
+</select>
+
+<input type="date" [(ngModel)]="appointmentDate" />
+<input placeholder="Reason" [(ngModel)]="reason" />
+
+<br /><br />
+<button (click)="bookAppointment()">Book Appointment</button>
+
+<hr />
+
+<h3>Appointment List</h3>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Patient</th>
+    <th>Doctor</th>
+    <th>Date</th>
+    <th>Reason</th>
+  </tr>
+
+  <tr *ngFor="let appt of appointments">
+    <td>{{ appt.patientName }}</td>
+    <td>{{ appt.doctorName }}</td>
+    <td>{{ appt.date }}</td>
+    <td>{{ appt.reason }}</td>
+  </tr>
+</table>
