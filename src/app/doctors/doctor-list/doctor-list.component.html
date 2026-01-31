@@ -19,6 +19,9 @@
     <th>Specialization</th>
     <th>Contact</th>
   </tr>
+  <tr *ngIf="doctors.length === 0">
+  <td colspan="4">No doctors found</td>
+</tr>
 
   <tr *ngFor="let doctor of doctors">
     <td>{{ doctor.name }}</td>

@@ -21,6 +21,9 @@
     <th>Gender</th>
     <th>Contact</th>
   </tr>
+  <tr *ngIf="patients.length === 0">
+  <td colspan="5">No patients found</td>
+</tr>
 
   <tr *ngFor="let patient of patients">
     <td>{{ patient.name }}</td>

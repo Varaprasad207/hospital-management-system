@@ -31,6 +31,9 @@
     <th>Date</th>
     <th>Reason</th>
   </tr>
+  <tr *ngIf="appointments.length === 0">
+  <td colspan="4">No appointments found</td>
+</tr>
 
   <tr *ngFor="let appt of appointments">
     <td>{{ appt.patientName }}</td>
