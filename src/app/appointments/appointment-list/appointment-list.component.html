@@ -1,15 +1,15 @@
 <h2>Book Appointment</h2>
-
+<div class = form>
 <select [(ngModel)]="selectedPatientId">
-  <option value="">Select Patient</option>
-  <option *ngFor="let patient of patients" [value]="patient.id">
+  <option [ngValue]="">Select Patient</option>
+  <option *ngFor="let patient of patients" [ngValue]="patient.id">
     {{ patient.name }}
   </option>
 </select>
 
 <select [(ngModel)]="selectedDoctorId">
-  <option value="">Select Doctor</option>
-  <option *ngFor="let doctor of doctors" [value]="doctor.id">
+  <option [ngValue]="">Select Doctor</option>
+  <option *ngFor="let doctor of doctors" [ngValue]="doctor.id">
     {{ doctor.name }} - {{ doctor.specialization }}
   </option>
 </select>
@@ -19,7 +19,7 @@
 
 <br /><br />
 <button (click)="bookAppointment()">Book Appointment</button>
-
+</div>
 <hr />
 
 <h3>Appointment List</h3>

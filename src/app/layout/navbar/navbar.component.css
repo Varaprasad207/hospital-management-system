@@ -1,26 +1,16 @@
-.navbar {
+nav {
   display: flex;
   gap: 20px;
-  padding: 12px 20px;
+  padding: 12px;
   background-color: #1976d2;
-  align-items: center;
 }
 
-.navbar a {
+nav a {
   color: white;
   text-decoration: none;
   font-weight: 500;
 }
 
-.spacer {
-  flex: 1;
-}
-
-button {
-  background: #f44336;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
+nav a:hover {
+  text-decoration: underline;
 }

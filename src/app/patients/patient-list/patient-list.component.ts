@@ -35,11 +35,16 @@ export class PatientListComponent implements OnInit {
   }
 
   addPatient() {
-    this.newPatient.id = Date.now(); // simple unique ID
-    this.patientService.addPatient(this.newPatient);
-    this.newPatient = { id: 0, name: '', age: 0, gender: '', contact: '' };
-    this.loadPatients();
+  if (!this.newPatient.name || !this.newPatient.age) {
+    alert('Please fill required fields');
+    return;
   }
+
+  this.newPatient.id = Date.now();
+  this.patientService.addPatient(this.newPatient);
+  this.newPatient = { id: 0, name: '', age: 0, gender: '', contact: '' };
+  this.loadPatients();
+}
   deletePatient(id: number) {
   this.patientService.deletePatient(id);
   this.loadPatients();

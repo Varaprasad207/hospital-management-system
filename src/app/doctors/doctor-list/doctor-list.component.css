@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+input, select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #1976d2;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #125ea8;
+}
+/* Table Styling */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.data-table th {
+  background-color: #1976d2;
+  color: white;
+}
+
+.data-table th, .data-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

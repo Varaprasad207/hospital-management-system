@@ -1,19 +1,19 @@
 <h2>Doctor Management</h2>
 
 <h3>Add Doctor</h3>
-
+<div class = form>
 <input placeholder="Name" [(ngModel)]="newDoctor.name" />
 <input placeholder="Specialization" [(ngModel)]="newDoctor.specialization" />
 <input placeholder="Contact" [(ngModel)]="newDoctor.contact" />
 
 <br /><br />
 <button (click)="addDoctor()">Add Doctor</button>
-
+</div>
 <hr />
 
 <h3>Doctor List</h3>
 
-<table border="1" cellpadding="8">
+<table border="1" cellpadding="8" class="data-table">
   <tr>
     <th>Name</th>
     <th>Specialization</th>

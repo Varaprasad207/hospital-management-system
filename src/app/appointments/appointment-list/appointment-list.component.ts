@@ -24,8 +24,9 @@ export class AppointmentListComponent implements OnInit {
   patients: Patient[] = [];
   doctors: Doctor[] = [];
 
-  selectedPatientId!: number;
-  selectedDoctorId!: number;
+  selectedPatientId: number | null = null;
+  selectedDoctorId: number | null = null;
+
   appointmentDate = '';
   reason = '';
   selectedAppointment: Appointment | null = null;
@@ -47,35 +48,50 @@ export class AppointmentListComponent implements OnInit {
   }
 
   bookAppointment() {
-  const patientId = Number(this.selectedPatientId);
-  const doctorId = Number(this.selectedDoctorId);
 
-  const patient = this.patients.find(p => p.id === patientId);
-  const doctor = this.doctors.find(d => d.id === doctorId);
-
-  if (!patient || !doctor) {
+  // ✅ STEP 1: Validation (PASTE THIS AT TOP)
+  if (
+    !this.selectedPatientId ||
+    !this.selectedDoctorId ||
+    !this.appointmentDate ||
+    !this.reason
+  ) {
+    alert('Please fill all appointment details');
     return;
   }
 
+  // ✅ STEP 2: Your existing logic (KEEP THIS)
+  const selectedPatient = this.patients.find(
+    p => p.id === this.selectedPatientId
+  );
+
+  const selectedDoctor = this.doctors.find(
+    d => d.id === this.selectedDoctorId
+  );
+
   const appointment: Appointment = {
     id: Date.now(),
-    patientId: patient.id,
-    patientName: patient.name,
-    doctorId: doctor.id,
-    doctorName: doctor.name,
+    patientId: this.selectedPatientId,
+    patientName: selectedPatient?.name || '',
+    doctorId: this.selectedDoctorId,
+    doctorName: selectedDoctor?.name || '',
     date: this.appointmentDate,
     reason: this.reason
   };
 
   this.appointmentService.addAppointment(appointment);
 
-  this.selectedPatientId = 0;
-  this.selectedDoctorId = 0;
+  // reset form
+  this.selectedPatientId = null;
+  this.selectedDoctorId = null;
   this.appointmentDate = '';
   this.reason = '';
 
   this.loadData();
-  }
+}
+
+
+
  deleteAppointment(id: number) {
    this.appointmentService.deleteAppointment(id);
    this.loadData();
@@ -105,6 +121,9 @@ export class AppointmentListComponent implements OnInit {
    this.selectedAppointment!.doctorName = doctor?.name || '';
 
   }
+  loadAppointments() {
+  this.appointments = this.appointmentService.getAppointments();
+}
 
 
 }

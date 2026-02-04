@@ -34,11 +34,17 @@ export class DoctorListComponent implements OnInit {
   }
 
   addDoctor() {
-    this.newDoctor.id = Date.now();
-    this.doctorService.addDoctor(this.newDoctor);
-    this.newDoctor = { id: 0, name: '', specialization: '', contact: '' };
-    this.loadDoctors();
+  if (!this.newDoctor.name || !this.newDoctor.specialization) {
+    alert('Please fill required fields');
+    return;
   }
+
+  this.newDoctor.id = Date.now();
+  this.doctorService.addDoctor(this.newDoctor);
+  this.newDoctor = { id: 0, name: '', specialization: '', contact: '' };
+  this.loadDoctors();
+}
+
   deleteDoctor(id: number) {
     this.doctorService.deleteDoctor(id);
     this.loadDoctors();
